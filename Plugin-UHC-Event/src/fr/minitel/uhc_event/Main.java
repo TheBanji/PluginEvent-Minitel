@@ -12,12 +12,11 @@ public class Main extends JavaPlugin {
 	public void onEnable() {
 		VariablesGlobales.gameStarted = false;
 		VariablesGlobales.pvpOn = false;
-		VariablesGlobales.registrationOn = true;
 		VariablesGlobales.SB = Bukkit.getScoreboardManager().getMainScoreboard();
 		VariablesGlobales.equipes = new ArrayList<Equipe>();
 		VariablesGlobales.achi_check = new HashMap<Advancement, Equipe>();
 		
-		System.out.println("[Plugin-UHC-Event] Plugin démarré.");
+		System.out.println("[Plugin-UHC-Event] Plugin dÃ©marrÃ©.");
 		
 		getCommand("all").setExecutor(new Commandes());
 		getCommand("go").setExecutor(new Commandes());
@@ -26,6 +25,6 @@ public class Main extends JavaPlugin {
 	
 	@Override
 	public void onDisable() {
-		System.out.println("[Plugin-UHC-Event] Plugin arrêté.");
+		System.out.println("[Plugin-UHC-Event] Plugin arrÃªtÃ©.");
 	}
 }
