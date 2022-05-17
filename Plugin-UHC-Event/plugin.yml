@@ -1,0 +1,13 @@
+name: Plugin-UHC-Event
+version: 1.0
+author: Benjamin
+main: fr.minitel.uhc_event.Main
+api-version: 1.18
+commands:
+  all:
+    description: /all <msg> envoi un message aux joueurs
+    permission: all.use
+  
+  go:
+    description: /go demarre le jeu
+    permission: all.use
