@@ -19,8 +19,8 @@ public class PluginListener implements Listener {
 	@EventHandler
 	public void onJoin(PlayerJoinEvent event) {
 		Player player = event.getPlayer();
-		player.sendMessage("§6Bienvenue preux combattant !");
-		player.sendTitle("Bienvenue !", "§6-= §cEvenement Minitel §6=-", 10, 50, 20);
+		player.sendMessage("Â§6Bienvenue preux combattant !");
+		player.sendTitle("Bienvenue !", "Â§6-= Â§cEvenement Minitel Â§6=-", 10, 50, 20);
 	}
 	
 	@EventHandler
@@ -28,19 +28,19 @@ public class PluginListener implements Listener {
 		Player player = e.getPlayer();
 		Action action = e.getAction();
 		ItemStack item = e.getItem();
-		if(item != null && (action == Action.LEFT_CLICK_BLOCK || action == Action.RIGHT_CLICK_BLOCK) && VariablesGlobales.registrationOn) {
+		if(item != null && (action == Action.LEFT_CLICK_BLOCK || action == Action.RIGHT_CLICK_BLOCK) && !VariablesGlobales.gameStarted) {
 			int l = VariablesGlobales.equipes.size();
 			if(item.getType() == Material.BLUE_WOOL) {
-				VariablesGlobales.equipes.add(new Equipe("Bleue", "§9"));
+				VariablesGlobales.equipes.add(new Equipe("Bleue", "Â§9"));
 				VariablesGlobales.equipes.get(l).addPlayer(VariablesGlobales.equipes, player);
 			} else if(item.getType() == Material.RED_WOOL) {
-				VariablesGlobales.equipes.add(new Equipe("Rouge", "§c"));
+				VariablesGlobales.equipes.add(new Equipe("Rouge", "Â§c"));
 				VariablesGlobales.equipes.get(l).addPlayer(VariablesGlobales.equipes, player);
 			} else if(item.getType() == Material.GREEN_WOOL) {
-				VariablesGlobales.equipes.add(new Equipe("Verte", "§a"));
+				VariablesGlobales.equipes.add(new Equipe("Verte", "Â§a"));
 				VariablesGlobales.equipes.get(l).addPlayer(VariablesGlobales.equipes, player);
 			} else if(item.getType() == Material.ORANGE_WOOL) {
-				VariablesGlobales.equipes.add(new Equipe("Orange", "§6"));
+				VariablesGlobales.equipes.add(new Equipe("Orange", "Â§6"));
 				VariablesGlobales.equipes.get(l).addPlayer(VariablesGlobales.equipes, player);
 			}
 		}
@@ -52,18 +52,18 @@ public class PluginListener implements Listener {
 		Equipe equipePlayer = Equipe.getEquipe(VariablesGlobales.equipes, player);
 		String color = "";
 		if(equipePlayer == null) {
-				color = "§f";
+				color = "Â§f";
 		} else {
 			color = equipePlayer.getCouleurEquipe();
 		}
-		e.setFormat("[" + color + player.getName() + "§f] > " + e.getMessage());
+		e.setFormat("[" + color + player.getName() + "Â§f] > " + e.getMessage());
 	}
 	
 	@EventHandler
 	public void onPlayerAttacked(EntityDamageByEntityEvent e) {
 		if(e.getEntity() instanceof Player && e.getDamager() instanceof Player) {
 			if(!VariablesGlobales.pvpOn) {
-				Bukkit.broadcastMessage("§2PVP pas encore actif !");
+				Bukkit.broadcastMessage("Â§2PVP pas encore actif !");
 				e.setCancelled(true);
 			}
 		}
@@ -71,7 +71,7 @@ public class PluginListener implements Listener {
 	
 	@EventHandler
 	public void onPlayerDeath(PlayerDeathEvent e) {
-		Bukkit.broadcastMessage("§c" + e.getEntity().getName() + "§a a été tué.");
+		Bukkit.broadcastMessage("Â§c" + e.getEntity().getName() + "Â§a a Ã©tÃ© tuÃ©.");
 		for(Player p : Bukkit.getServer().getOnlinePlayers()) {
 			p.playSound(p.getLocation(), Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 1.0f, 1.0f);
 		}
@@ -84,8 +84,8 @@ public class PluginListener implements Listener {
 			if(equipe != null && !VariablesGlobales.achi_check.containsKey(e.getAdvancement())) {
 				equipe.updateScore(10);
 				VariablesGlobales.achi_check.put(e.getAdvancement(), equipe);
-				Bukkit.broadcastMessage("§aNouvel achievement débloqué par " + equipe.getCouleurEquipe() + equipe.getNomEquipe() + ".");
-				Bukkit.broadcastMessage(equipe.getCouleurEquipe() + equipe.getNomEquipe() + "§f a désormais " + equipe.getScore() + " points.");
+				Bukkit.broadcastMessage("Â§aNouvel achievement dÃ©bloquÃ© par " + equipe.getCouleurEquipe() + equipe.getNomEquipe() + ".");
+				Bukkit.broadcastMessage(equipe.getCouleurEquipe() + equipe.getNomEquipe() + "Â§f a dÃ©sormais " + equipe.getScore() + " points.");
 				for(Player p : Bukkit.getServer().getOnlinePlayers()) {
 					p.playSound(p.getLocation(), Sound.ENTITY_VILLAGER_CELEBRATE, 1.0f, 1.0f);
 				}
